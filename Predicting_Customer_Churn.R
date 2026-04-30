@@ -82,4 +82,31 @@ pR2(modelo_logit)
 
 
 
+###### 3
+
+## Probabilidades predichas
+data$prob_pred <- predict(modelo_logit, type = "response")
+
+## Clasificación (umbral 0.1)
+data$pred <- ifelse(data$prob_pred > 0.1, 1, 0)
+
+## Convertir a factor
+data$pred <- as.factor(data$pred)
+data$Churn..1...Yes..0...No. <- as.factor(data$Churn..1...Yes..0...No.)
+
+## Matriz de confusión
+table(Predicho = data$pred, Real = data$Churn..1...Yes..0...No.)
+
+
+mean(data$pred == data$Churn..1...Yes..0...No.)
+
+
+## Error = Real - Predicción
+data$error <- as.numeric(as.character(data$Churn..1...Yes..0...No.)) - data$prob_pred
+
+## Histograma de errores
+ggplot(data, aes(x = error)) +
+  geom_histogram(bins = 30)
+
+
 
