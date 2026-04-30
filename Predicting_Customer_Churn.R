@@ -110,3 +110,26 @@ ggplot(data, aes(x = error)) +
 
 
 
+## 1. Generación Tabla
+
+## Seleccionar variables numéricas
+data_num <- data[sapply(data, is.numeric)]
+
+## Crear tabla descriptiva
+tabla_desc <- data.frame(
+  Variable = names(data_num),
+  N = sapply(data_num, function(x) sum(!is.na(x))),
+  Mean = sapply(data_num, mean, na.rm = TRUE),
+  SD = sapply(data_num, sd, na.rm = TRUE),
+  Min = sapply(data_num, min, na.rm = TRUE),
+  Max = sapply(data_num, max, na.rm = TRUE)
+)
+
+## Ver tabla
+tabla_desc
+
+write.csv(tabla_desc, "tabla_descriptiva.csv", row.names = FALSE)
+
+
+
+
