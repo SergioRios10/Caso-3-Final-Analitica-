@@ -71,5 +71,15 @@ modelo_logit <- glm(Churn..1...Yes..0...No. ~
                     family = binomial(link = "logit"))
 
 
+## Resumen del modelo
+summary(modelo_logit)
+
+
+## Pseudo R2
+
+library(pscl)
+pR2(modelo_logit)
+
+
 
 
