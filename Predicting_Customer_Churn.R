@@ -52,3 +52,24 @@ data %>%
 
 
 
+###### 2
+
+## Modelo Logit
+modelo_logit <- glm(Churn..1...Yes..0...No. ~ 
+                      Customer.Age..in.months. +
+                      CHI.Score.Month.0 +
+                      CHI.Score.0.1 +
+                      Support.Cases.Month.0 +
+                      Support.Cases.0.1 +
+                      SP.Month.0 +
+                      SP.0.1 +
+                      Logins.0.1 +
+                      Blog.Articles.0.1 +
+                      Views.0.1 +
+                      Days.Since.Last.Login.0.1,
+                    data = data,
+                    family = binomial(link = "logit"))
+
+
+
+
